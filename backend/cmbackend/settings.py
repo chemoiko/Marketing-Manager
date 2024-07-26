@@ -15,6 +15,16 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import cloudinary 
+import os
+
+print("os.environ.get('CLOUD_NAME')", os.environ.get('CLOUD_API_KEY'))
+
+cloudinary.config(
+    cloud_name = os.environ.get('CLOUD_NAME'), 
+    api_key=os.environ.get('CLOUD_API_KEY'),
+    api_secret=os.environ.get('CLOUD_API_SECRET')
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
