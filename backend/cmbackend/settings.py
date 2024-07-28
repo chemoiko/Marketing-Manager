@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import cloudinary 
 import os
 
-print("os.environ.get('CLOUD_NAME')", os.environ.get('CLOUD_API_KEY'))
+print("os.environ.get('CLOUD_NAME')", os.environ.get('CLOUD_NAME'))
 
 cloudinary.config(
     cloud_name = os.environ.get('CLOUD_NAME'), 
@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'campaigns'
 ]
 
 MIDDLEWARE = [
