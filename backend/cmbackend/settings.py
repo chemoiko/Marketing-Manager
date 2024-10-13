@@ -10,18 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import cloudinary
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import cloudinary 
-import os
 
 print("os.environ.get('CLOUD_NAME')", os.environ.get('CLOUD_NAME'))
 
 cloudinary.config(
-    cloud_name = os.environ.get('CLOUD_NAME'), 
+    cloud_name=os.environ.get('CLOUD_NAME'),
     api_key=os.environ.get('CLOUD_API_KEY'),
     api_secret=os.environ.get('CLOUD_API_SECRET')
 )
@@ -49,10 +49,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
-    'campaigns'
+    'campaigns',
+    'debug_toolbar',
+    "corsheaders",
+
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+
 ]
 
 ROOT_URLCONF = 'cmbackend.urls'
@@ -112,6 +119,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:4000",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
